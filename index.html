@@ -14,9 +14,53 @@
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
         .text-balance {
             text-wrap: balance;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f4f4f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #18181b;
+            border-radius: 10px;
+        }
+
+        /* Animation Classes */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scale-in {
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .scale-in.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #18181b;
+            z-index: 100;
+            transition: width 0.1s ease-out;
         }
     </style>
 <script type="importmap">
@@ -30,6 +74,7 @@
 </script>
 </head>
 <body class="bg-white text-zinc-900">
+    <div class="scroll-progress" id="progress-bar"></div>
     <div id="root"></div>
 </body>
 </html>
