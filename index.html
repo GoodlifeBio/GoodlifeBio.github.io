@@ -1,80 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMR-DNA Probe Diagnostic</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-        .text-balance {
-            text-wrap: balance;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f4f4f5;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #18181b;
-            border-radius: 10px;
-        }
-
-        /* Animation Classes */
-        .reveal-item {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal-item.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .scale-in {
-            transform: scale(0.95);
-            opacity: 0;
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .scale-in.active {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: #18181b;
-            z-index: 100;
-            transition: width 0.1s ease-out;
-        }
-    </style>
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
-  }
-}
-</script>
+    <title>Goodlife.bio | Diagnostics for the critical hour</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-white text-zinc-900">
-    <div class="scroll-progress" id="progress-bar"></div>
-    <div id="root"></div>
+
+<body>
+
+    <header>
+        <h1>Goodlife<span style="color: #999; font-weight: normal;">.bio</span></h1>
+
+        <nav>
+            <a href="#vision">Vision</a>
+            <a href="#amr">AMR Project</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#team">Team</a>
+            <a href="#">Research PDF</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="intro">
+            <p><strong>The earlier you know, the better your chances.</strong></p>
+            <p>Goodlife.bio develops rapid diagnostics for deadly infections. We believe science works best when
+                biology, engineering, and code sit at the same table.</p>
+        </div>
+
+        <img src="https://raw.githubusercontent.com/StackBlitz/stackblitz-images/main/visualising-the-signal.png"
+            alt="Visualising the Signal" onerror="this.style.display='none'">
+
+        <hr id="vision">
+
+        <section>
+            <h2>Our Philosophy</h2>
+            <p>In health emergencies, time is the only currency that matters. We build the sensors that give time back
+                to doctors and patients.</p>
+
+            <div class="note">
+                <strong>Biology × Engineering × Code</strong><br>
+                Our platform isn't just a chemical test; it's a multiplexed information system. By encoding antibiotic
+                resistance data into DNA barcodes, we bridge the gap between biological events and digital-grade
+                precision.
+            </div>
+
+            <h3>Key Features</h3>
+            <ul>
+                <li><strong>Rapid Detection:</strong> Results in under 1 hour.</li>
+                <li><strong>High Specificity:</strong> Multiplexed DNA barcodes for accurate differentiation.</li>
+                <li><strong>Field Ready:</strong> Low-cost and requires no complex lab infrastructure.</li>
+            </ul>
+        </section>
+
+        <hr id="amr">
+
+        <section>
+            <h2>AMR-DNA Probe System</h2>
+            <p class="section-description">Flagship Project: A novel chemistry-driven diagnostic for rapid
+                &beta;-lactamase detection through programmable DNA barcodes.</p>
+
+            <img src="https://raw.githubusercontent.com/StackBlitz/stackblitz-images/main/amr-diagnostic-diagram.png"
+                alt="AMR Architecture" onerror="this.style.display='none'">
+
+            <h3>How It Works</h3>
+            <div class="posts">
+                <ul>
+                    <li><strong>01 Conjugation:</strong> Each probe is tuned for a specific class of resistance enzyme
+                        via its C-7 side chain, conjugated to a unique DNA barcode.</li>
+                    <li><strong>02 Trigger:</strong> Enzymatic hydrolysis of the antibiotic ring triggers a
+                        self-immolative release, freeing the specific DNA barcode into the sample.</li>
+                    <li><strong>03 Readout:</strong> Free barcodes hybridize to spatially separated capture zones on a
+                        lateral flow strip.</li>
+                </ul>
+            </div>
+
+            <h3>The Probe Library</h3>
+            <table class="pipeline-table">
+                <thead>
+                    <tr>
+                        <th>Probe ID & Name</th>
+                        <th>Core Chemistry</th>
+                        <th>Target Logic</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="program-name"><strong>P1</strong><br>Broad-Spectrum</td>
+                        <td class="core">Ampicillin</td>
+                        <td class="stage">Class A Penicillinases</td>
+                        <td>Detects standard penicillin resistance (E. coli, H. influenzae).</td>
+                    </tr>
+                    <tr>
+                        <td class="program-name"><strong>P2</strong><br>ESBL Probe</td>
+                        <td class="core">Cefotaxime</td>
+                        <td class="stage">Class A ESBLs</td>
+                        <td>Identifies resistance to 3rd-gen cephalosporins (CTX-M).</td>
+                    </tr>
+                    <tr>
+                        <td class="program-name"><strong>P3</strong><br>AmpC Probe</td>
+                        <td class="core">Cefoxitin</td>
+                        <td class="stage">Class C Cephalosporinases</td>
+                        <td>Differentiates AmpC-mediated resistance from ESBLs.</td>
+                    </tr>
+                    <tr>
+                        <td class="program-name"><strong>P4</strong><br>Carbapenemase</td>
+                        <td class="core">Imipenem</td>
+                        <td class="stage">Class A, B, D Carbapenemases</td>
+                        <td>Flags critical resistance to carbapenems.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <hr id="workflow">
+
+        <section>
+            <h2>Seamless Implementation</h2>
+            <p>Needing no complex machinery, just human-centric engineering.</p>
+            <ol style="padding-left: 1.5rem; margin-bottom: 2rem; line-height: 1.8;">
+                <li><strong>Collect:</strong> Small volume of Blood or Sputum.</li>
+                <li><strong>Lysis:</strong> Mix with reagent to release bacterial enzymes.</li>
+                <li><strong>Incubate:</strong> Wait for probe cleavage & activation.</li>
+                <li><strong>Read:</strong> Visual pattern readout on lateral flow.</li>
+            </ol>
+        </section>
+
+        <hr id="team">
+
+        <section>
+            <h2>Team</h2>
+            <p><strong>Sambhab Mishra</strong></p>
+            <p><em>"Diagnostics and therapeutics for the critical hour. Earlier is better."</em></p>
+            <p><a href="mailto:hello@goodlife.bio">Contact for Collaboration</a></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Goodlife.bio &copy; 2024</p>
+        <p>
+            <a href="mailto:hello@goodlife.bio">hello@goodlife.bio</a>
+            <a href="#">Twitter</a>
+        </p>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: #999;">Built at the intersection of Bio, Engineering &
+            Code</p>
+    </footer>
+
 </body>
+
 </html>
