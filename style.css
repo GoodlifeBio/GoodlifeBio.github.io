@@ -31,7 +31,7 @@ html {
 
 body {
   margin: auto;
-  max-width: 780px;
+  max-width: 960px;
   line-height: 1.65;
   padding: 0 1.5rem;
   background-color: #fffff8;
@@ -45,7 +45,7 @@ header {
 }
 
 h1 {
-  font-weight: 400;
+  font-weight: normal;
   font-size: 2.8rem;
   line-height: 1;
   margin-bottom: 1.5rem;
@@ -53,20 +53,22 @@ h1 {
 }
 
 h2 {
-    font-weight: 400;
-    font-size: 2.0rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    letter-spacing: -0.01em;
+  font-weight: normal;
+  font-size: 1.6rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
 }
 
 h3 {
-    font-weight: 400;
-    font-size: 1.4rem;
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-     color: #333;
+  font-weight: normal;
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
 }
+
+
 
 nav {
   margin-top: 1.5rem;
@@ -97,11 +99,12 @@ nav a.active {
 p {
   margin-bottom: 1.4rem;
   line-height: 1.7;
+  text-align: justify;
 }
 
 .intro {
-    font-size: 1.3rem; 
-    margin-bottom: 2rem;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
 }
 
 .posts {
@@ -120,12 +123,13 @@ p {
   margin-bottom: 2rem;
 }
 
-.posts li {
+li {
   margin-bottom: 0.5rem;
   line-height: 1.6;
+  text-align: justify;
 }
 
- a {
+a {
   color: var(--blue);
   text-decoration: underline;
   transition: text-decoration-color 0.30s ease;
@@ -205,9 +209,9 @@ p {
 }
 
 .pipeline-table .core {
-    font-family: monospace;
-    color: var(--blue);
-    font-size: 0.85rem;
+  font-family: monospace;
+  color: var(--blue);
+  font-size: 0.85rem;
 }
 
 .market-value {
@@ -253,7 +257,7 @@ footer a:hover {
   }
 
   h1 {
-      font-size: 2.2rem;
+    font-size: 2.2rem;
   }
 
   .pipeline-table {
