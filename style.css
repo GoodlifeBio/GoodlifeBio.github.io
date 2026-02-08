@@ -1,10 +1,52 @@
 :root {
+  /* Color Palette */
   --blue: #3b5998;
   --green: #138808;
-  --pc-pink: #e8b4bc;
-  --inde-purple: #b8b4dc;
-  --ind-blue: #7ba3d4;
-  --p1-orange: #e8bc94;
+
+  /* Light Theme (Default) */
+  --bg-color: #fffff8;
+  --text-color: #111;
+  --text-muted: #666;
+  --heading-color: #111;
+  --link-color: #3b5998;
+  /* var(--blue) */
+  --border-color: #ddd;
+  --card-bg: #fff;
+  --card-shadow: rgba(0, 0, 0, 0.05);
+  --header-line: #ddd;
+  --table-border: #eee;
+  --table-hover: #fafafa;
+  --footer-border: #ddd;
+  --code-bg: #f5f5f5;
+  --nav-link-color: #666;
+  --nav-link-hover: #3b5998;
+  --nav-link-active: #111;
+
+  /* Transition for smooth theme switch */
+  --theme-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme Overrides */
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --heading-color: #f0f0f0;
+  --link-color: #7ba3d4;
+  /* Lighter blue for dark mode */
+  --border-color: #333;
+  --card-bg: #1e1e1e;
+  --card-shadow: rgba(0, 0, 0, 0.5);
+  --header-line: #333;
+  --table-border: #333;
+  --table-hover: #1f1f1f;
+  --footer-border: #333;
+  --code-bg: #2d2d2d;
+  --nav-link-color: #b0b0b0;
+  --nav-link-hover: #7ba3d4;
+  --nav-link-active: #fff;
+  --blue: #7ba3d4;
+  /* Adjust global blue for dark mode context if needed */
 }
 
 * {
@@ -23,10 +65,27 @@ img {
   height: auto;
   display: block;
   margin-bottom: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+  opacity: 0.95;
+  /* Slight opacity in case of bright images in dark mode */
+}
+
+[data-theme="dark"] img {
+  opacity: 0.85;
+  /* Reduce brightness slightly in dark mode */
+}
+
+img:hover {
+  transform: scale(1.01);
+  opacity: 1;
 }
 
 html {
-  background-color: #fffff8;
+  background-color: var(--bg-color);
+  scroll-behavior: smooth;
+  transition: var(--theme-transition);
 }
 
 body {
@@ -34,9 +93,36 @@ body {
   max-width: 960px;
   line-height: 1.65;
   padding: 0 1.5rem;
-  background-color: #fffff8;
+  background-color: var(--bg-color);
   font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
-  color: #111;
+  color: var(--text-color);
+  opacity: 0;
+  animation: pageFadeIn 0.8s ease-out forwards;
+  transition: var(--theme-transition);
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade-in Animation Class */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 header {
@@ -50,6 +136,7 @@ h1 {
   line-height: 1;
   margin-bottom: 1.5rem;
   letter-spacing: -0.01em;
+  color: var(--heading-color);
 }
 
 h2 {
@@ -58,6 +145,7 @@ h2 {
   margin-top: 3rem;
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
+  color: var(--heading-color);
 }
 
 h3 {
@@ -65,35 +153,57 @@ h3 {
   font-size: 1.25rem;
   margin-top: 2rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--heading-color);
 }
-
-
 
 nav {
   margin-top: 1.5rem;
   margin-bottom: 3rem;
-  color: #666;
+  color: var(--nav-link-color);
 }
 
 nav a {
-  color: #666;
+  color: var(--nav-link-color);
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color 0.3s ease;
   white-space: nowrap;
   border: none;
   font-weight: normal;
   margin-right: 1.5rem;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--link-color);
+  transition: width 0.3s ease;
 }
 
 nav a:hover {
-  color: var(--blue);
-  text-decoration: underline;
+  color: var(--nav-link-hover);
+}
+
+nav a:hover::after {
+  width: 100%;
 }
 
 nav a.active {
-  color: #111;
-  text-decoration: underline;
+  color: var(--nav-link-active);
+  font-weight: 500;
+}
+
+nav a.active::after {
+  width: 100%;
+  background-color: var(--nav-link-active);
+}
+
+@keyframes navGlowing {
+  /* Unused now */
 }
 
 p {
@@ -130,7 +240,7 @@ li {
 }
 
 a {
-  color: var(--blue);
+  color: var(--link-color);
   text-decoration: underline;
   transition: text-decoration-color 0.30s ease;
 }
@@ -138,7 +248,7 @@ a {
 .pipeline-intro {
   margin-bottom: 3rem;
   font-size: 1.1rem;
-  color: #333;
+  color: var(--heading-color);
 }
 
 .pipeline-section {
@@ -149,12 +259,12 @@ a {
   font-size: 1.2rem;
   font-weight: 400;
   margin-bottom: 0.5rem;
-  color: #111;
+  color: var(--heading-color);
 }
 
 .section-description {
   font-size: 1rem;
-  color: #666;
+  color: var(--text-muted);
   margin-bottom: 2rem;
   line-height: 1.6;
 }
@@ -168,19 +278,19 @@ a {
 }
 
 .pipeline-table thead {
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid var(--border-color);
 }
 
 .pipeline-table th {
   text-align: left;
   padding: 0.75rem 0.5rem;
   font-weight: 400;
-  color: #666;
+  color: var(--text-muted);
   font-size: 0.95rem;
 }
 
 .pipeline-table tbody tr {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--table-border);
   transition: background-color 0.15s ease;
 }
 
@@ -189,7 +299,7 @@ a {
 }
 
 .pipeline-table tbody tr:hover {
-  background-color: #fafafa;
+  background-color: var(--table-hover);
 }
 
 .pipeline-table td {
@@ -200,17 +310,17 @@ a {
 
 .pipeline-table .program-name {
   font-weight: 400;
-  color: #111;
+  color: var(--text-color);
 }
 
 .pipeline-table .stage {
-  color: #555;
+  color: var(--text-muted);
   font-size: 0.9rem;
 }
 
 .pipeline-table .core {
   font-family: monospace;
-  color: var(--blue);
+  color: var(--link-color);
   font-size: 0.85rem;
 }
 
@@ -222,10 +332,10 @@ a {
 .note {
   margin-top: 2rem;
   padding: 1rem 1.5rem;
-  background-color: #fafafa;
-  border-left: 3px solid var(--blue);
+  background-color: var(--table-hover);
+  border-left: 3px solid var(--link-color);
   font-size: 0.95rem;
-  color: #666;
+  color: var(--text-muted);
   line-height: 1.6;
 }
 
@@ -233,21 +343,21 @@ footer {
   margin-top: 4rem;
   padding-top: 2rem;
   padding-bottom: 3rem;
-  border-top: 1px solid #ddd;
-  color: #666;
+  border-top: 1px solid var(--footer-border);
+  color: var(--text-muted);
   font-size: 0.9rem;
   text-align: center;
 }
 
 footer a {
-  color: #666;
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.15s ease;
   margin: 0 0.5rem;
 }
 
 footer a:hover {
-  color: var(--blue);
+  color: var(--link-color);
   text-decoration: underline;
 }
 
@@ -273,7 +383,7 @@ footer a:hover {
 hr {
   margin: 3rem 0;
   border: none;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--border-color);
 }
 
 /* Team Section Styles */
@@ -285,30 +395,30 @@ hr {
 }
 
 .team-card {
-  background: #fff;
-  border: 1px solid #eee;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   text-align: center;
 }
 
 .team-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-color: var(--ind-blue);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--link-color);
 }
 
 .team-card h3 {
   margin-top: 0;
   font-size: 1.4rem;
-  color: #333;
+  color: var(--heading-color);
   margin-bottom: 0.5rem;
 }
 
 .team-card .role {
-  color: var(--blue);
+  color: var(--link-color);
   font-size: 1rem;
   margin-bottom: 1.5rem;
   font-weight: 500;
@@ -319,5 +429,49 @@ hr {
 .team-card p {
   text-align: center;
   font-size: 0.95rem;
-  color: #555;
+  color: var(--text-muted);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-btn:hover {
+  background-color: var(--table-hover);
+  transform: rotate(15deg);
+}
+
+/* --- Lenis Smooth Scroll Styles --- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
